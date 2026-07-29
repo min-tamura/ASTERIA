@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fe:Project fb:created="2026-07-27T16:41:51.711 JST" fb:idSeq="1" fb:version="1.0" id="365c66ae-6356-4084-95b6-f80d2c2503d5" name="IF0001" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
+<fe:Project fb:created="2026-07-29T13:16:22.309 JST" fb:idSeq="1" fb:version="1.0" id="33597d61-db3a-41b2-b6c5-a00e330a15a2" name="IF0002" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
 	<fb:Property name="CreatedVersion">2512.3203</fb:Property>
 	<fb:Property name="UpdateVersion">2512.3203</fb:Property>
 	<fb:Property name="Revision"/>
@@ -50,11 +50,11 @@
 				<mp:Mappings>
 					<mp:Option layer="レイヤー1" name="inputHideFields"/>
 					<mp:Option layer="レイヤー1" name="outputHideFields"/>
-					<mp:Function fb:x="424" fb:y="84" name="Const1" type="CONST">
-						<fb:Description height="17" visible="true" width="124" x="424" y="120">
-							<fb:Property name="Text">developで修正：asteria1</fb:Property>
+					<mp:Function fb:x="390" fb:y="84" name="Const1" type="CONST">
+						<fb:Description height="17" visible="true" width="124" x="390" y="120">
+							<fb:Property name="Text">developで作成：asteria2</fb:Property>
 						</fb:Description>
-						<mp:Property name="Data">developで修正：asteria1</mp:Property>
+						<mp:Property name="Data">developで作成：asteria2</mp:Property>
 						<mp:Property name="DataType">String</mp:Property>
 						<mp:Property name="EnableMetaCharacter">false</mp:Property>
 					</mp:Function>
