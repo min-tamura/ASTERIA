@@ -58,6 +58,38 @@
 						<mp:Property name="DataType">String</mp:Property>
 						<mp:Property name="EnableMetaCharacter">false</mp:Property>
 					</mp:Function>
+					<mp:Function fb:x="628" fb:y="84" name="Concatenate1" type="CONCATENATE">
+						<mp:Property name="Separator"/>
+						<mp:Property name="EnableMetaCharacter">false</mp:Property>
+						<mp:Property name="NoSeparatorWhenEmpty">false</mp:Property>
+						<mp:Input>
+							<mp:Item>Link1</mp:Item>
+							<mp:Item>Link2</mp:Item>
+						</mp:Input>
+					</mp:Function>
+					<mp:Function fb:x="424" fb:y="186" name="Const2" type="CONST">
+						<fb:Description height="17" visible="true" width="52" x="424" y="222">
+							<fb:Property name="Text">追加修正</fb:Property>
+						</fb:Description>
+						<mp:Property name="Data">追加修正</mp:Property>
+						<mp:Property name="DataType">String</mp:Property>
+						<mp:Property name="EnableMetaCharacter">false</mp:Property>
+					</mp:Function>
+					<mp:Link name="Link1">
+						<mp:Input name="Const1"/>
+						<mp:Output name="Concatenate1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input name="Const2"/>
+						<mp:Output name="Concatenate1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input name="Concatenate1"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/Object"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
 				</mp:Mappings>
 			</fe:Property>
 			<fe:Output>
