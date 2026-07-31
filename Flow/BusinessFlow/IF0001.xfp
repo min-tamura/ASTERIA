@@ -58,6 +58,20 @@
 						<mp:Property name="DataType">String</mp:Property>
 						<mp:Property name="EnableMetaCharacter">false</mp:Property>
 					</mp:Function>
+					<mp:Function fb:x="662" fb:y="84" name="Len1" type="LEN">
+						<mp:Property name="Mode">CharactersWithIVS</mp:Property>
+						<mp:Property name="Encoding">utf-8</mp:Property>
+					</mp:Function>
+					<mp:Link name="Link1">
+						<mp:Input name="Const1"/>
+						<mp:Output name="Len1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input name="Len1"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/Object"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
 				</mp:Mappings>
 			</fe:Property>
 			<fe:Output>
