@@ -52,14 +52,19 @@
 					<mp:Option layer="レイヤー1" name="outputHideFields"/>
 					<mp:Function fb:x="390" fb:y="84" name="Const1" type="CONST">
 						<fb:Description height="30" visible="true" width="124" x="390" y="120">
-							<fb:Property name="Text">テスト完了&#xd;
+							<fb:Property name="Text">テスト実施完了&#xd;
 developで作成：asteria2</fb:Property>
 						</fb:Description>
-						<mp:Property name="Data">テスト完了&#xd;
+						<mp:Property name="Data">テスト実施完了&#xd;
 developで作成：asteria2</mp:Property>
 						<mp:Property name="DataType">String</mp:Property>
 						<mp:Property name="EnableMetaCharacter">false</mp:Property>
 					</mp:Function>
+					<mp:Link name="Link1">
+						<mp:Input name="Const1"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/Object"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
 				</mp:Mappings>
 			</fe:Property>
 			<fe:Output>
