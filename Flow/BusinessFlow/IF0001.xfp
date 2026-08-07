@@ -100,9 +100,15 @@ developで修正：asteria1</mp:Property>
 				</fe:Stream>
 			</fe:Output>
 		</fe:Component>
-		<fe:Component fb:x="16" fb:y="152" name="End1" type="End">
+		<fe:Component fb:x="16" fb:y="220" name="End1" type="End">
 			<fe:Property name="CommitTransaction">true</fe:Property>
 			<fe:Property name="ReturnValue"/>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="152" name="Sleep1" type="Sleep">
+			<fe:Property name="Exception"/>
+			<fe:Property name="SleepMessage">Good night</fe:Property>
+			<fe:Property name="WakeupMessage">Good morning</fe:Property>
+			<fe:Property name="SleepTime">60000</fe:Property>
 		</fe:Component>
 		<fe:Link name="Link1">
 			<fe:Input name="Start1"/>
@@ -111,6 +117,11 @@ developで修正：asteria1</mp:Property>
 		</fe:Link>
 		<fe:Link name="Link2">
 			<fe:Input name="Mapper1"/>
+			<fe:Output name="Sleep1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link3">
+			<fe:Input name="Sleep1"/>
 			<fe:Output name="End1"/>
 			<fb:Line type="Direct"/>
 		</fe:Link>
