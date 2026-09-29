@@ -37,8 +37,90 @@
 			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
 			<fe:Property name="UseHighCapacityStreams">true</fe:Property>
 			<fe:Output>
-				<fe:Stream format="Any"/>
+				<fe:Stream format="Record">
+					<fe:FieldDef/>
+				</fe:Stream>
 			</fe:Output>
 		</fe:Component>
+		<fe:Component fb:x="16" fb:y="220" name="RDBPut1" type="RDB(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="Connection">asteria_internal</fe:Property>
+			<fe:Property name="Mode">Insert</fe:Property>
+			<fe:Property name="TableName">USERS</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="UpsertInsertCount"/>
+			<fe:Property name="UpsertUpdateCount"/>
+			<fe:Property name="BatchCount">100</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:AdditionalProp name="Field(Input)">
+				<fe:Row Key="false" Name="NAME" Type="String"/>
+				<fe:Row Key="false" Name="EMAIL" Type="String"/>
+			</fe:AdditionalProp>
+			<fe:Input>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="NAME" type="String"/>
+						<fe:Field name="EMAIL" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="288" name="EndResponse1" type="EndResponse">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+			<fe:Property name="PackRecords">true</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="152" name="DynamicConnection2" type="DynamicConnection">
+			<fe:Property name="Exception"/>
+			<fe:Property name="Type">RDBConnection</fe:Property>
+			<fe:Property name="Connection">asteria_internal</fe:Property>
+			<fe:Property name="databasetype" type="choice">HSQL Database(Server)</fe:Property>
+			<fe:Property name="driver" type="string">org.hsqldb.jdbcDriver</fe:Property>
+			<fe:Property name="url" type="string">jdbc:hsqldb:hsql://localhost:29001/asteriadb</fe:Property>
+			<fe:Property name="username" type="string">sa</fe:Property>
+			<fe:Property name="password" type="password"/>
+			<fe:Property name="useSchemata" type="string"/>
+			<fe:Property name="xa" type="boolean">false</fe:Property>
+			<fe:Input>
+				<fe:SyncDef component="RDBPut1"/>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="84" name="Mapper1" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:SyncDef component="RDBPut1"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Link name="Link2">
+			<fe:Input name="RDBPut1"/>
+			<fe:Output name="EndResponse1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link1">
+			<fe:Input name="Start1"/>
+			<fe:Output name="Mapper1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link3">
+			<fe:Input name="Mapper1"/>
+			<fe:Output name="DynamicConnection2"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link4">
+			<fe:Input name="DynamicConnection2"/>
+			<fe:Output name="RDBPut1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
 	</fe:Flow>
 </fe:Project>
