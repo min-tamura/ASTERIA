@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fe:Project fb:created="2026-08-28T13:04:05.200 JST" fb:idSeq="1" fb:version="1.0" id="a45e7263-a579-43ef-bd3b-e8669f830a50" name="DB to File" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
+	<fb:Property name="CreatedVersion">2512.3203</fb:Property>
+	<fb:Property name="UpdateVersion">2512.3203</fb:Property>
+	<fb:Property name="Revision"/>
+	<fb:Property name="Author"/>
+	<fb:Property name="Copyright"/>
+	<fe:Property name="CacheType">true</fe:Property>
+	<fe:Property name="AllowInvoke"/>
+	<fe:Property name="LogSettings" unfold="true">
+		<fe:Property name="LogName"/>
+		<fe:Property name="LogLevel">default</fe:Property>
+		<fe:Property name="OutputDefault">true</fe:Property>
+	</fe:Property>
+	<fe:Flow id="Flow1" name="検証">
+		<fe:Property name="Timeout">180</fe:Property>
+		<fe:Property name="Exception"/>
+		<fe:Property name="AllowInvoke"/>
+		<fe:Property name="LogSettings" unfold="true">
+			<fe:Property name="LogName"/>
+			<fe:Property name="LogLevel">default</fe:Property>
+			<fe:Property name="OutputDefault">true</fe:Property>
+		</fe:Property>
+		<fe:Property name="CloseSession">true</fe:Property>
+		<fe:Property name="HttpExecute">false</fe:Property>
+		<fe:Component fb:x="16" fb:y="16" name="Start1" type="Start">
+			<fe:Property name="Exception"/>
+			<fe:Property name="BeginTransaction">false</fe:Property>
+			<fe:Property name="BeginCheckPoint">False</fe:Property>
+			<fe:Property name="CheckPointGroup" unfold="true">
+				<fe:Property name="Status"/>
+				<fe:Property name="RetryCount">SystemDefault</fe:Property>
+				<fe:Property name="RetryInterval">SystemDefault</fe:Property>
+				<fe:Property name="OtherServerRetry">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="RequiredRole"/>
+			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
+			<fe:Property name="UseHighCapacityStreams">true</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Any"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="84" name="RDBGet1" type="RDB(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">asteria_internal</fe:Property>
+			<fe:Property name="SQL">SELECT ORDER_NO,
+       PRODUCT_CODE,
+       COUNTS 
+  FROM FLOW03_IN_4 A</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="sa" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
+					<fe:Table bounds="134,122,143,129" name="FLOW03_IN_4" schema="" tid="4">
+						<fe:Column name="ORDER_NO" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="PRODUCT_CODE" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COUNTS" type="INTEGER" typeName="INTEGER"/>
+					</fe:Table>
+					<fe:Select>
+						<fe:Column column="ORDER_NO" schema="" table="FLOW03_IN_4" tid="4"/>
+						<fe:Column column="PRODUCT_CODE" schema="" table="FLOW03_IN_4" tid="4"/>
+						<fe:Column column="COUNTS" schema="" table="FLOW03_IN_4" tid="4"/>
+					</fe:Select>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="ORDER_NO" type="String"/>
+						<fe:Field name="PRODUCT_CODE" type="String"/>
+						<fe:Field name="COUNTS" type="Integer"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="152" name="Mapper1" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/ORDER_NO"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/ORDER_NO"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/PRODUCT_CODE"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/PRODUCT_CODE"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/COUNTS"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/COUNTS"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="CSV">
+					<fe:Property name="StartRow">1</fe:Property>
+					<fe:Property name="Separator">,</fe:Property>
+					<fe:Property name="QuotedBy">"</fe:Property>
+					<fe:Property name="QuoteTarget">all</fe:Property>
+					<fe:Property name="NullQuoting">quote</fe:Property>
+					<fe:Property name="EscapeMode">bs</fe:Property>
+					<fe:Property name="ReadTrim">true</fe:Property>
+					<fe:Property name="Encoding">utf-8</fe:Property>
+					<fe:Property name="LineFeed">(No conversion)</fe:Property>
+					<fe:Property name="OutputFieldName">False</fe:Property>
+					<fe:Property name="MemoryReductionMode">False</fe:Property>
+					<fe:FieldDef>
+						<fe:Field name="ORDER_NO" type="String"/>
+						<fe:Field name="PRODUCT_CODE" type="String"/>
+						<fe:Field name="COUNTS" type="Integer"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="220" name="FilePut1" type="FileSystem(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="AlreadyExistException"/>
+			<fe:Property name="FilePath">性能検証.csv</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">Relative</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="AppendMode">Append</fe:Property>
+			<fe:Property name="AllowOverwrite">true</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="288" name="EndResponse1" type="EndResponse">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+			<fe:Property name="PackRecords">true</fe:Property>
+		</fe:Component>
+		<fe:Link name="Link2">
+			<fe:Input name="RDBGet1"/>
+			<fe:Output name="Mapper1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link1">
+			<fe:Input name="Start1"/>
+			<fe:Output name="RDBGet1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link3">
+			<fe:Input name="Mapper1"/>
+			<fe:Output name="FilePut1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link4">
+			<fe:Input name="FilePut1"/>
+			<fe:Output name="EndResponse1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+	</fe:Flow>
+</fe:Project>
