@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fe:Project fb:created="2026-08-24T19:01:26.630 JST" fb:idSeq="1" fb:version="1.0" id="a2656910-f5d1-452b-bc75-ebc40cd995ca" name="PJ_MTH4DMP0210_v9" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
+	<fb:Property name="CreatedVersion">2512.3203</fb:Property>
+	<fb:Property name="UpdateVersion">2608.3412</fb:Property>
+	<fb:Property name="Revision"/>
+	<fb:Property name="Author"/>
+	<fb:Property name="Copyright"/>
+	<fe:Property name="CacheType">true</fe:Property>
+	<fe:Property name="AllowInvoke"/>
+	<fe:Property name="LogSettings" unfold="true">
+		<fe:Property name="LogName"/>
+		<fe:Property name="LogLevel">default</fe:Property>
+		<fe:Property name="OutputDefault">true</fe:Property>
+	</fe:Property>
+	<fb:Description height="17" width="100" x="0" y="0">
+		<fb:Property name="Text">THINKS4⇒D-MAP</fb:Property>
+	</fb:Description>
+	<fe:Flow id="Flow1" name="FLOW_MTH4DMP0210_v9">
+		<fe:Property name="Timeout">1800</fe:Property>
+		<fe:Property name="Exception"/>
+		<fe:Property name="AllowInvoke"/>
+		<fe:Property name="LogSettings" unfold="true">
+			<fe:Property name="LogName"/>
+			<fe:Property name="LogLevel">default</fe:Property>
+			<fe:Property name="OutputDefault">true</fe:Property>
+		</fe:Property>
+		<fe:Property name="CloseSession">true</fe:Property>
+		<fe:Property name="HttpExecute">false</fe:Property>
+		<fb:Description height="56" visible="false" width="205" x="0" y="0">
+			<fb:Property name="Text">入力ストリームは使用せず、すべて無視します。
+入力ストリームが使用できないのでインプット対象がなさそう。</fb:Property>
+		</fb:Description>
+		<fe:Component fb:x="16" fb:y="16" name="Start1" type="Start">
+			<fb:Property name="Icon">start2.png</fb:Property>
+			<fe:Property name="Exception"/>
+			<fe:Property name="BeginTransaction">true</fe:Property>
+			<fe:Property name="BeginCheckPoint">False</fe:Property>
+			<fe:Property name="CheckPointGroup" unfold="true">
+				<fe:Property name="Status"/>
+				<fe:Property name="RetryCount">SystemDefault</fe:Property>
+				<fe:Property name="RetryInterval">SystemDefault</fe:Property>
+				<fe:Property name="OtherServerRetry">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="RequiredRole"/>
+			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
+			<fe:Property name="UseHighCapacityStreams">false</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Any"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="288" fb:y="16" name="RDBGet1" type="RDB(Get)">
+			<fb:Description height="17" visible="false" width="120" x="324" y="16">
+				<fb:Property name="Text">連携元データを取得する
+</fb:Property>
+			</fb:Description>
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">T41DEV</fe:Property>
+			<fe:Property name="SQL">SELECT PRESCRIPTION_NO,
+       PRESCRIPTION_DETAIL_NO,
+       PRESCRIPTION_ATTRIBUTE_CD,
+       PRESCRIPTION_ATTRIBUTE_VALUE,
+       CANCEL_FLG,
+       REC_CRE_DT,
+       REC_CRE_USER_ID,
+       REC_CRE_PG_ID,
+       REC_UPD_DT,
+       REC_UPD_USER_ID,
+       REC_UPD_PG_ID,
+       REC_LOCK_VERSION 
+  FROM THINKSD1.TR_PRESCRIPTION_DETAIL A 
+ WHERE REC_UPD_DT &gt;= ?Parameter1?</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option dbms="Oracle" defaultSchema="thinksd1" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
+					<fe:Table bounds="13,35,233,260" name="THINKSD1.TR_PRESCRIPTION_DETAIL" schema="THINKSD1" tid="0">
+						<fe:Column name="PRESCRIPTION_NO" type="VARCHAR" typeName="VARCHAR2"/>
+						<fe:Column name="PRESCRIPTION_DETAIL_NO" type="NUMERIC" typeName="NUMBER"/>
+						<fe:Column name="PRESCRIPTION_ATTRIBUTE_CD" type="VARCHAR" typeName="VARCHAR2"/>
+						<fe:Column name="PRESCRIPTION_ATTRIBUTE_VALUE" type="VARCHAR" typeName="VARCHAR2"/>
+						<fe:Column name="CANCEL_FLG" type="CHAR" typeName="CHAR"/>
+						<fe:Column name="REC_CRE_DT" type="TIMESTAMP" typeName="DATE"/>
+						<fe:Column name="REC_CRE_USER_ID" type="VARCHAR" typeName="VARCHAR2"/>
+						<fe:Column name="REC_CRE_PG_ID" type="VARCHAR" typeName="VARCHAR2"/>
+						<fe:Column name="REC_UPD_DT" type="TIMESTAMP" typeName="DATE"/>
+						<fe:Column name="REC_UPD_USER_ID" type="VARCHAR" typeName="VARCHAR2"/>
+						<fe:Column name="REC_UPD_PG_ID" type="VARCHAR" typeName="VARCHAR2"/>
+						<fe:Column name="REC_LOCK_VERSION" type="NUMERIC" typeName="NUMBER"/>
+					</fe:Table>
+					<fe:Select>
+						<fe:Column column="PRESCRIPTION_NO" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="PRESCRIPTION_DETAIL_NO" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="PRESCRIPTION_ATTRIBUTE_CD" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="PRESCRIPTION_ATTRIBUTE_VALUE" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="CANCEL_FLG" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="REC_CRE_DT" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="REC_CRE_USER_ID" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="REC_CRE_PG_ID" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="REC_UPD_DT" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="REC_UPD_USER_ID" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="REC_UPD_PG_ID" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+						<fe:Column column="REC_LOCK_VERSION" schema="THINKSD1" table="THINKSD1.TR_PRESCRIPTION_DETAIL" tid="0"/>
+					</fe:Select>
+					<fe:Param bounds="0,0,0,0">
+						<fe:Column name="Parameter1" type="TIMESTAMP"/>
+					</fe:Param>
+					<fe:Condition type="compound">
+						<fe:Condition column="REC_UPD_DT" op=">=" table="THINKSD1.THINKSD1.TR_PRESCRIPTION_DETAIL" type="param">Parameter1</fe:Condition>
+					</fe:Condition>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:AdditionalProp name="SQLParameter">
+				<fe:Row JavaType="TIMESTAMP" Name="Parameter1" Type="DateTime"/>
+			</fe:AdditionalProp>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="PRESCRIPTION_NO" type="String"/>
+						<fe:Field name="PRESCRIPTION_DETAIL_NO" type="Decimal"/>
+						<fe:Field name="PRESCRIPTION_ATTRIBUTE_CD" type="String"/>
+						<fe:Field name="PRESCRIPTION_ATTRIBUTE_VALUE" type="String"/>
+						<fe:Field name="CANCEL_FLG" type="String"/>
+						<fe:Field name="REC_CRE_DT" type="DateTime"/>
+						<fe:Field name="REC_CRE_USER_ID" type="String"/>
+						<fe:Field name="REC_CRE_PG_ID" type="String"/>
+						<fe:Field name="REC_UPD_DT" type="DateTime"/>
+						<fe:Field name="REC_UPD_USER_ID" type="String"/>
+						<fe:Field name="REC_UPD_PG_ID" type="String"/>
+						<fe:Field name="REC_LOCK_VERSION" type="Decimal"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="356" fb:y="16" name="Mapper1" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/PRESCRIPTION_NO"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/prescription_no"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/PRESCRIPTION_DETAIL_NO"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/prescription_detail_no"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/PRESCRIPTION_ATTRIBUTE_CD"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/prescription_attribute_cd"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link4">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/PRESCRIPTION_ATTRIBUTE_VALUE"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/prescription_attribute_value"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link5">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/CANCEL_FLG"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/cancel_flg"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link6">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/REC_CRE_DT"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/rec_cre_dt"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link7">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/REC_CRE_USER_ID"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/rec_cre_user_id"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link8">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/REC_CRE_PG_ID"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/rec_cre_pg_id"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link9">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/REC_UPD_DT"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/rec_upd_dt"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link10">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/REC_UPD_USER_ID"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/rec_upd_user_id"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link11">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/REC_UPD_PG_ID"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/rec_upd_pg_id"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link12">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/REC_LOCK_VERSION"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/rec_lock_version"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:SyncDef component="RDBPut3"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="16" name="Mapper2" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Function fb:x="390" fb:y="118" name="Now1" type="NOW">
+						<mp:Property name="Format">yyyy-MM-dd HH:mm:ss</mp:Property>
+						<mp:Property name="TruncateTime">false</mp:Property>
+						<mp:Property name="TimeZone">(default)</mp:Property>
+						<mp:Property name="Locale">(default)</mp:Property>
+					</mp:Function>
+					<mp:Link name="Link1">
+						<mp:Input name="Now1"/>
+						<mp:Output fb:x="0" fb:y="0" table="FV/this_sst"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Text">
+					<fe:Property name="Encoding">utf-8</fe:Property>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="152" fb:y="16" name="FileGet1" type="FileSystem(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="FileNotFoundException">@$@system@$@	EndFlow</fe:Property>
+			<fe:Property name="FilePath">test_fukumoto/MTH4DMP0210.prm</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">ProjectOwner</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="FileEncoding">(AutoDetect)</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Text">
+					<fe:Property name="Encoding">utf-8</fe:Property>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="16" name="Mapper3" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Function fb:x="356" fb:y="50" name="StrToDateStd1" type="StrToDateStd">
+						<mp:Property name="Mode">Custom</mp:Property>
+						<mp:Property name="Format">yyyy-MM-dd 00:00:00</mp:Property>
+						<mp:Property name="TimeZone">(default)</mp:Property>
+						<mp:Property name="Locale">(default)</mp:Property>
+						<mp:Property name="UseJapaneseCalendar">false</mp:Property>
+						<mp:Property name="WhenInvalid">Default</mp:Property>
+						<mp:Property name="Lenient">false</mp:Property>
+						<mp:Property name="Detail" unfold="true">
+							<mp:Property name="Formatter">DateTimeFormatter</mp:Property>
+						</mp:Property>
+					</mp:Function>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/Object"/>
+						<mp:Output fb:x="0" fb:y="0" table="FV/prev_sst"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/Object"/>
+						<mp:Output name="StrToDateStd1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input name="StrToDateStd1"/>
+						<mp:Output fb:x="0" fb:y="0" table="CP/CP:RDBGet1/SQLParameter/Parameter1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Text">
+					<fe:Property name="Encoding">utf-8</fe:Property>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="424" fb:y="16" name="SQLCall1" type="SQLCall">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">DMPDEV</fe:Property>
+			<fe:Property name="Mode">SQL</fe:Property>
+			<fe:Property name="SQL">TRUNCATE TABLE dmap.dihsample_if_prescription_detail;</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="Transaction">true</fe:Property>
+			<fe:Property name="TransformSQLParameter">true</fe:Property>
+			<fe:Input>
+				<fe:SyncDef component="RDBPut3"/>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="492" fb:y="16" name="RDBPut3" type="RDB(Put)">
+			<fb:Description height="43" visible="true" width="202" x="528" y="16">
+				<fb:Property name="Text">ワークテーブルにそのままを連携する
+</fb:Property>
+			</fb:Description>
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="Connection">DMPDEV</fe:Property>
+			<fe:Property name="Mode">Insert</fe:Property>
+			<fe:Property name="TableName">dmap.dihsample_if_prescription_detail</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="UpsertInsertCount"/>
+			<fe:Property name="UpsertUpdateCount"/>
+			<fe:Property name="BatchCount">100</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:AdditionalProp name="Field(Input)">
+				<fe:Row Key="true" Name="prescription_no" Type="String"/>
+				<fe:Row Key="true" Name="prescription_detail_no" Type="Integer"/>
+				<fe:Row Key="false" Name="prescription_attribute_cd" Type="String"/>
+				<fe:Row Key="false" Name="prescription_attribute_value" Type="String"/>
+				<fe:Row Key="false" Name="cancel_flg" Type="String"/>
+				<fe:Row Key="false" Name="rec_cre_dt" Type="DateTime"/>
+				<fe:Row Key="false" Name="rec_cre_user_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_cre_pg_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_upd_dt" Type="DateTime"/>
+				<fe:Row Key="false" Name="rec_upd_user_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_upd_pg_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_lock_version" Type="Integer"/>
+			</fe:AdditionalProp>
+			<fe:Input>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="prescription_no" type="String"/>
+						<fe:Field name="prescription_detail_no" type="Integer"/>
+						<fe:Field name="prescription_attribute_cd" type="String"/>
+						<fe:Field name="prescription_attribute_value" type="String"/>
+						<fe:Field name="cancel_flg" type="String"/>
+						<fe:Field name="rec_cre_dt" type="DateTime"/>
+						<fe:Field name="rec_cre_user_id" type="String"/>
+						<fe:Field name="rec_cre_pg_id" type="String"/>
+						<fe:Field name="rec_upd_dt" type="DateTime"/>
+						<fe:Field name="rec_upd_user_id" type="String"/>
+						<fe:Field name="rec_upd_pg_id" type="String"/>
+						<fe:Field name="rec_lock_version" type="Integer"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="560" fb:y="16" name="RDBGet_update" type="RDB(Get)">
+			<fb:Description height="17" visible="false" width="111" x="596" y="16">
+				<fb:Property name="Text">更新対象を抽出</fb:Property>
+			</fb:Description>
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">DMPDEV</fe:Property>
+			<fe:Property name="SQL">SELECT wk.*
+FROM dmap.dihsample_if_prescription_detail wk
+WHERE EXISTS (
+    SELECT 1 FROM dmap.if_prescription_detail t
+    WHERE t.prescription_no = wk.prescription_no
+      AND t.prescription_detail_no = wk.prescription_detail_no
+)</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="dmap" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="false" useTableAlias="true"/>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:SyncDef component="RDBPut_update"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="628" fb:y="16" name="RDBPut_update" type="RDB(Put)">
+			<fb:Description height="17" visible="false" width="119" x="664" y="16">
+				<fb:Property name="Text">連携先DBの更新する</fb:Property>
+			</fb:Description>
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="Connection">DMPDEV</fe:Property>
+			<fe:Property name="Mode">Update</fe:Property>
+			<fe:Property name="TableName">dmap.if_prescription_detail</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="UpsertInsertCount"/>
+			<fe:Property name="UpsertUpdateCount"/>
+			<fe:Property name="BatchCount">100</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:AdditionalProp name="Field(Input)">
+				<fe:Row Key="true" Name="prescription_no" Type="String"/>
+				<fe:Row Key="true" Name="prescription_detail_no" Type="Integer"/>
+				<fe:Row Key="false" Name="prescription_attribute_cd" Type="String"/>
+				<fe:Row Key="false" Name="prescription_attribute_value" Type="String"/>
+				<fe:Row Key="false" Name="cancel_flg" Type="String"/>
+				<fe:Row Key="false" Name="rec_cre_dt" Type="DateTime"/>
+				<fe:Row Key="false" Name="rec_cre_user_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_cre_pg_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_upd_dt" Type="DateTime"/>
+				<fe:Row Key="false" Name="rec_upd_user_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_upd_pg_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_lock_version" Type="Integer"/>
+			</fe:AdditionalProp>
+			<fe:Input>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="prescription_no" type="String"/>
+						<fe:Field name="prescription_detail_no" type="Integer"/>
+						<fe:Field name="prescription_attribute_cd" type="String"/>
+						<fe:Field name="prescription_attribute_value" type="String"/>
+						<fe:Field name="cancel_flg" type="String"/>
+						<fe:Field name="rec_cre_dt" type="DateTime"/>
+						<fe:Field name="rec_cre_user_id" type="String"/>
+						<fe:Field name="rec_cre_pg_id" type="String"/>
+						<fe:Field name="rec_upd_dt" type="DateTime"/>
+						<fe:Field name="rec_upd_user_id" type="String"/>
+						<fe:Field name="rec_upd_pg_id" type="String"/>
+						<fe:Field name="rec_lock_version" type="Integer"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="696" fb:y="16" name="RDBGet_insert" type="RDB(Get)">
+			<fb:Description height="17" visible="false" width="149" x="732" y="16">
+				<fb:Property name="Text">登録対象のデータを抽出</fb:Property>
+			</fb:Description>
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">DMPDEV</fe:Property>
+			<fe:Property name="SQL">SELECT wk.*
+FROM dmap.dihsample_if_prescription_detail wk
+WHERE NOT EXISTS (
+    SELECT 1 FROM dmap.if_prescription_detail t
+    WHERE t.prescription_no = wk.prescription_no
+      AND t.prescription_detail_no = wk.prescription_detail_no
+)</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="dmap" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="false" useTableAlias="true"/>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:SyncDef component="RDBPut_insert"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="764" fb:y="16" name="RDBPut_insert" type="RDB(Put)">
+			<fb:Description height="17" visible="false" width="133" x="800" y="16">
+				<fb:Property name="Text">Insert対象レコードを登録</fb:Property>
+			</fb:Description>
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="Connection">DMPDEV</fe:Property>
+			<fe:Property name="Mode">Insert</fe:Property>
+			<fe:Property name="TableName">dmap.if_prescription_detail</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="UpsertInsertCount"/>
+			<fe:Property name="UpsertUpdateCount"/>
+			<fe:Property name="BatchCount">100</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:AdditionalProp name="Field(Input)">
+				<fe:Row Key="true" Name="prescription_no" Type="String"/>
+				<fe:Row Key="true" Name="prescription_detail_no" Type="Integer"/>
+				<fe:Row Key="false" Name="prescription_attribute_cd" Type="String"/>
+				<fe:Row Key="false" Name="prescription_attribute_value" Type="String"/>
+				<fe:Row Key="false" Name="cancel_flg" Type="String"/>
+				<fe:Row Key="false" Name="rec_cre_dt" Type="DateTime"/>
+				<fe:Row Key="false" Name="rec_cre_user_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_cre_pg_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_upd_dt" Type="DateTime"/>
+				<fe:Row Key="false" Name="rec_upd_user_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_upd_pg_id" Type="String"/>
+				<fe:Row Key="false" Name="rec_lock_version" Type="Integer"/>
+			</fe:AdditionalProp>
+			<fe:Input>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="prescription_no" type="String"/>
+						<fe:Field name="prescription_detail_no" type="Integer"/>
+						<fe:Field name="prescription_attribute_cd" type="String"/>
+						<fe:Field name="prescription_attribute_value" type="String"/>
+						<fe:Field name="cancel_flg" type="String"/>
+						<fe:Field name="rec_cre_dt" type="DateTime"/>
+						<fe:Field name="rec_cre_user_id" type="String"/>
+						<fe:Field name="rec_cre_pg_id" type="String"/>
+						<fe:Field name="rec_upd_dt" type="DateTime"/>
+						<fe:Field name="rec_upd_user_id" type="String"/>
+						<fe:Field name="rec_upd_pg_id" type="String"/>
+						<fe:Field name="rec_lock_version" type="Integer"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="832" fb:y="16" name="Mapper6" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="FV/this_sst"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/Object"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Text">
+					<fe:Property name="Encoding">utf-8</fe:Property>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="900" fb:y="16" name="FilePut2" type="FileSystem(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="AlreadyExistException"/>
+			<fe:Property name="FilePath">test_fukumoto/MTH4DMP0210.prm</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">ProjectOwner</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="AppendMode">New</fe:Property>
+			<fe:Property name="AllowOverwrite">true</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="968" fb:y="16" name="End3" type="End">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+		</fe:Component>
+		<fe:Link name="Link5">
+			<fe:Input name="Start1"/>
+			<fe:Output name="Mapper2"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link6">
+			<fe:Input name="Mapper2"/>
+			<fe:Output name="FileGet1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link7">
+			<fe:Input name="FileGet1"/>
+			<fe:Output name="Mapper3"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link1">
+			<fe:Input name="Mapper3"/>
+			<fe:Output name="RDBGet1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link2">
+			<fe:Input name="RDBGet1"/>
+			<fe:Output name="Mapper1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link3">
+			<fe:Input name="Mapper1"/>
+			<fe:Output name="SQLCall1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link4">
+			<fe:Input name="SQLCall1"/>
+			<fe:Output name="RDBPut3"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link11">
+			<fe:Input name="RDBPut3"/>
+			<fe:Output name="RDBGet_update"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link14">
+			<fe:Input name="RDBGet_update"/>
+			<fe:Output name="RDBPut_update"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link17">
+			<fe:Input name="RDBPut_update"/>
+			<fe:Output name="RDBGet_insert"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link19">
+			<fe:Input name="RDBGet_insert"/>
+			<fe:Output name="RDBPut_insert"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link21">
+			<fe:Input name="RDBPut_insert"/>
+			<fe:Output name="Mapper6"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link22">
+			<fe:Input name="Mapper6"/>
+			<fe:Output name="FilePut2"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link25">
+			<fe:Input name="FilePut2"/>
+			<fe:Output name="End3"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Variables>
+			<fe:Field access="private" name="prev_sst" type="String"/>
+			<fe:Field access="private" name="this_sst" type="String"/>
+		</fe:Variables>
+	</fe:Flow>
+</fe:Project>

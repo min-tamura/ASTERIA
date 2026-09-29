@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fe:Project fb:created="2026-08-31T09:07:09.422 JST" fb:idSeq="4" fb:version="1.0" id="a98253fd-eea4-4e76-b316-b38431f26f66" name="Project4" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
+	<fb:Property name="CreatedVersion">2512.3203</fb:Property>
+	<fb:Property name="UpdateVersion">2608.3412</fb:Property>
+	<fb:Property name="Revision"/>
+	<fb:Property name="Author"/>
+	<fb:Property name="Copyright"/>
+	<fe:Property name="CacheType">true</fe:Property>
+	<fe:Property name="AllowInvoke"/>
+	<fe:Property name="LogSettings" unfold="true">
+		<fe:Property name="LogName"/>
+		<fe:Property name="LogLevel">default</fe:Property>
+		<fe:Property name="OutputDefault">true</fe:Property>
+	</fe:Property>
+	<fe:Flow id="Flow4" name="Main">
+		<fe:Property name="Timeout">0</fe:Property>
+		<fe:Property name="Exception"/>
+		<fe:Property name="AllowInvoke"/>
+		<fe:Property name="LogSettings" unfold="true">
+			<fe:Property name="LogName"/>
+			<fe:Property name="LogLevel">default</fe:Property>
+			<fe:Property name="OutputDefault">true</fe:Property>
+		</fe:Property>
+		<fe:Property name="CloseSession">true</fe:Property>
+		<fe:Property name="HttpExecute">false</fe:Property>
+		<fe:Component fb:x="84" fb:y="84" name="Start1" type="Start">
+			<fe:Property name="Exception"/>
+			<fe:Property name="BeginTransaction">false</fe:Property>
+			<fe:Property name="BeginCheckPoint">False</fe:Property>
+			<fe:Property name="CheckPointGroup" unfold="true">
+				<fe:Property name="Status"/>
+				<fe:Property name="RetryCount">SystemDefault</fe:Property>
+				<fe:Property name="RetryInterval">SystemDefault</fe:Property>
+				<fe:Property name="OtherServerRetry">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="RequiredRole"/>
+			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
+			<fe:Property name="UseHighCapacityStreams">true</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Any"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="254" name="Mapper1" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Function fb:x="220" fb:y="322" name="Table1" type="TABLE">
+						<mp:Property name="Mode">File</mp:Property>
+						<mp:Property name="FileType">CSV</mp:Property>
+						<mp:Property name="HomeDirectory">Relative</mp:Property>
+						<mp:Property name="FilePath">exist_list.csv</mp:Property>
+						<mp:Property name="Encoding">utf-8</mp:Property>
+						<mp:Property name="LastModifiedCheckingMethod">Newer</mp:Property>
+						<mp:Property name="InlineTable"/>
+						<mp:Property name="KeyColumn">1</mp:Property>
+						<mp:Property name="ValueColumn">2</mp:Property>
+						<mp:Property name="IllegalKey">DefaultValue</mp:Property>
+						<mp:Property name="DefaultValue">false</mp:Property>
+					</mp:Function>
+					<mp:Link name="Link2">
+						<mp:Input name="Table1"/>
+						<mp:Output fb:x="0" fb:y="0" table="CP/CP:BranchStart1/Condition"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLA"/>
+						<mp:Output name="Table1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLA"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col01"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link4">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLB"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col02"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link5">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLC"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col03"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link6">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLD"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col04"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link7">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLE"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col05"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link8">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLF"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col06"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link9">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLG"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col07"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link10">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLH"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col08"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link11">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLI"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col09"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link12">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLJ"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col10"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link13">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLK"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col11"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link14">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RecordLoop1/SD:F/COLL"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col12"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="CSV">
+					<fe:Property name="StartRow">1</fe:Property>
+					<fe:Property name="Separator">,</fe:Property>
+					<fe:Property name="QuotedBy">"</fe:Property>
+					<fe:Property name="QuoteTarget">all</fe:Property>
+					<fe:Property name="NullQuoting">quote</fe:Property>
+					<fe:Property name="EscapeMode">bs</fe:Property>
+					<fe:Property name="ReadTrim">true</fe:Property>
+					<fe:Property name="Encoding">utf-8</fe:Property>
+					<fe:Property name="LineFeed">(No conversion)</fe:Property>
+					<fe:Property name="OutputFieldName">False</fe:Property>
+					<fe:Property name="MemoryReductionMode">False</fe:Property>
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+						<fe:Field name="col03" type="String"/>
+						<fe:Field name="col04" type="String"/>
+						<fe:Field name="col05" type="String"/>
+						<fe:Field name="col06" type="String"/>
+						<fe:Field name="col07" type="String"/>
+						<fe:Field name="col08" type="String"/>
+						<fe:Field name="col09" type="String"/>
+						<fe:Field name="col10" type="String"/>
+						<fe:Field name="col11" type="String"/>
+						<fe:Field name="col12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="322" name="BranchStart1" type="BranchFilterStart">
+			<fe:Property name="Exception"/>
+			<fe:Property name="Condition"/>
+			<fe:Property name="EvaluateMode">Any one</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="526" fb:y="424" name="RDBPut1" type="RDB(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="Mode">Insert</fe:Property>
+			<fe:Property name="TableName">public.test_data</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="UpsertInsertCount"/>
+			<fe:Property name="UpsertUpdateCount"/>
+			<fe:Property name="BatchCount">10000</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:AdditionalProp name="Field(Input)">
+				<fe:Row Key="true" Name="col01" Type="String"/>
+				<fe:Row Key="true" Name="col02" Type="String"/>
+				<fe:Row Key="false" Name="col03" Type="String"/>
+				<fe:Row Key="false" Name="col04" Type="String"/>
+				<fe:Row Key="false" Name="col05" Type="String"/>
+				<fe:Row Key="false" Name="col06" Type="String"/>
+				<fe:Row Key="false" Name="col07" Type="String"/>
+				<fe:Row Key="false" Name="col08" Type="String"/>
+				<fe:Row Key="false" Name="col09" Type="String"/>
+				<fe:Row Key="false" Name="col10" Type="String"/>
+				<fe:Row Key="false" Name="col11" Type="String"/>
+				<fe:Row Key="false" Name="col12" Type="String"/>
+			</fe:AdditionalProp>
+			<fe:Input>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+						<fe:Field name="col03" type="String"/>
+						<fe:Field name="col04" type="String"/>
+						<fe:Field name="col05" type="String"/>
+						<fe:Field name="col06" type="String"/>
+						<fe:Field name="col07" type="String"/>
+						<fe:Field name="col08" type="String"/>
+						<fe:Field name="col09" type="String"/>
+						<fe:Field name="col10" type="String"/>
+						<fe:Field name="col11" type="String"/>
+						<fe:Field name="col12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="628" fb:y="424" name="RDBPut2" type="RDB(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="Mode">Update</fe:Property>
+			<fe:Property name="TableName">public.test_data</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="UpsertInsertCount"/>
+			<fe:Property name="UpsertUpdateCount"/>
+			<fe:Property name="BatchCount">10000</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:AdditionalProp name="Field(Input)">
+				<fe:Row Key="true" Name="col01" Type="String"/>
+				<fe:Row Key="true" Name="col02" Type="String"/>
+				<fe:Row Key="false" Name="col03" Type="String"/>
+				<fe:Row Key="false" Name="col04" Type="String"/>
+				<fe:Row Key="false" Name="col05" Type="String"/>
+				<fe:Row Key="false" Name="col06" Type="String"/>
+				<fe:Row Key="false" Name="col07" Type="String"/>
+				<fe:Row Key="false" Name="col08" Type="String"/>
+				<fe:Row Key="false" Name="col09" Type="String"/>
+				<fe:Row Key="false" Name="col10" Type="String"/>
+				<fe:Row Key="false" Name="col11" Type="String"/>
+				<fe:Row Key="false" Name="col12" Type="String"/>
+			</fe:AdditionalProp>
+			<fe:Input>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+						<fe:Field name="col03" type="String"/>
+						<fe:Field name="col04" type="String"/>
+						<fe:Field name="col05" type="String"/>
+						<fe:Field name="col06" type="String"/>
+						<fe:Field name="col07" type="String"/>
+						<fe:Field name="col08" type="String"/>
+						<fe:Field name="col09" type="String"/>
+						<fe:Field name="col10" type="String"/>
+						<fe:Field name="col11" type="String"/>
+						<fe:Field name="col12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="526" fb:y="492" name="End2" type="End">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+		</fe:Component>
+		<fe:Component fb:x="628" fb:y="492" name="End3" type="End">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="390" name="FilePut2" type="FileSystem(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="AlreadyExistException"/>
+			<fe:Property name="FilePath">insert.csv</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">Relative</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="AppendMode">Append</fe:Property>
+			<fe:Property name="AllowOverwrite">true</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="322" fb:y="390" name="FilePut3" type="FileSystem(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="AlreadyExistException"/>
+			<fe:Property name="FilePath">update.csv</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">Relative</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="AppendMode">Append</fe:Property>
+			<fe:Property name="AllowOverwrite">true</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="526" fb:y="288" name="FileGet2" type="FileSystem(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="FileNotFoundException"/>
+			<fe:Property name="FilePath">insert.csv</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">Relative</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="FileEncoding">utf-8</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+			<fe:Output>
+				<fe:Stream format="CSV">
+					<fe:Property name="StartRow">1</fe:Property>
+					<fe:Property name="Separator">,</fe:Property>
+					<fe:Property name="QuotedBy">"</fe:Property>
+					<fe:Property name="QuoteTarget">all</fe:Property>
+					<fe:Property name="NullQuoting">quote</fe:Property>
+					<fe:Property name="EscapeMode">bs</fe:Property>
+					<fe:Property name="ReadTrim">true</fe:Property>
+					<fe:Property name="Encoding">utf-8</fe:Property>
+					<fe:Property name="LineFeed">(No conversion)</fe:Property>
+					<fe:Property name="OutputFieldName">False</fe:Property>
+					<fe:Property name="MemoryReductionMode">False</fe:Property>
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+						<fe:Field name="col03" type="String"/>
+						<fe:Field name="col04" type="String"/>
+						<fe:Field name="col05" type="String"/>
+						<fe:Field name="col06" type="String"/>
+						<fe:Field name="col07" type="String"/>
+						<fe:Field name="col08" type="String"/>
+						<fe:Field name="col09" type="String"/>
+						<fe:Field name="col10" type="String"/>
+						<fe:Field name="col11" type="String"/>
+						<fe:Field name="col12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="526" fb:y="356" name="Mapper5" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col01"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col01"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col02"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col02"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col03"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col03"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link4">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col04"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col04"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link5">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col05"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col05"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link6">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col06"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col06"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link7">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col07"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col07"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link8">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col08"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col08"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link9">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col09"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col09"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link10">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col10"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col10"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link11">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col11"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col11"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link12">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet2/SD:F/col12"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col12"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:SyncDef component="RDBPut1"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="628" fb:y="288" name="FileGet3" type="FileSystem(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="FileNotFoundException"/>
+			<fe:Property name="FilePath">update.csv</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">Relative</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="FileEncoding">utf-8</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+			<fe:Output>
+				<fe:Stream format="CSV">
+					<fe:Property name="StartRow">1</fe:Property>
+					<fe:Property name="Separator">,</fe:Property>
+					<fe:Property name="QuotedBy">"</fe:Property>
+					<fe:Property name="QuoteTarget">all</fe:Property>
+					<fe:Property name="NullQuoting">quote</fe:Property>
+					<fe:Property name="EscapeMode">bs</fe:Property>
+					<fe:Property name="ReadTrim">true</fe:Property>
+					<fe:Property name="Encoding">utf-8</fe:Property>
+					<fe:Property name="LineFeed">(No conversion)</fe:Property>
+					<fe:Property name="OutputFieldName">False</fe:Property>
+					<fe:Property name="MemoryReductionMode">False</fe:Property>
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+						<fe:Field name="col03" type="String"/>
+						<fe:Field name="col04" type="String"/>
+						<fe:Field name="col05" type="String"/>
+						<fe:Field name="col06" type="String"/>
+						<fe:Field name="col07" type="String"/>
+						<fe:Field name="col08" type="String"/>
+						<fe:Field name="col09" type="String"/>
+						<fe:Field name="col10" type="String"/>
+						<fe:Field name="col11" type="String"/>
+						<fe:Field name="col12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="628" fb:y="356" name="Mapper3" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col01"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col01"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col02"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col02"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col03"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col03"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link4">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col04"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col04"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link5">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col05"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col05"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link6">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col06"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col06"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link7">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col07"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col07"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link8">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col08"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col08"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link9">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col09"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col09"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link10">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col10"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col10"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link11">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col11"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col11"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link12">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet3/SD:F/col12"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/col12"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:SyncDef component="RDBPut2"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="458" name="BranchEnd1" type="BranchFilterEnd">
+			<fe:Input>
+				<fe:Item>Link11</fe:Item>
+				<fe:Item>Link14</fe:Item>
+			</fe:Input>
+			<fe:Output>
+				<fe:Stream format="CSV">
+					<fe:Property name="StartRow">1</fe:Property>
+					<fe:Property name="Separator">,</fe:Property>
+					<fe:Property name="QuotedBy">"</fe:Property>
+					<fe:Property name="QuoteTarget">all</fe:Property>
+					<fe:Property name="NullQuoting">quote</fe:Property>
+					<fe:Property name="EscapeMode">bs</fe:Property>
+					<fe:Property name="ReadTrim">true</fe:Property>
+					<fe:Property name="Encoding">utf-8</fe:Property>
+					<fe:Property name="LineFeed">(No conversion)</fe:Property>
+					<fe:Property name="OutputFieldName">False</fe:Property>
+					<fe:Property name="MemoryReductionMode">False</fe:Property>
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+						<fe:Field name="col03" type="String"/>
+						<fe:Field name="col04" type="String"/>
+						<fe:Field name="col05" type="String"/>
+						<fe:Field name="col06" type="String"/>
+						<fe:Field name="col07" type="String"/>
+						<fe:Field name="col08" type="String"/>
+						<fe:Field name="col09" type="String"/>
+						<fe:Field name="col10" type="String"/>
+						<fe:Field name="col11" type="String"/>
+						<fe:Field name="col12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="526" name="LoopEnd1" type="LoopEnd">
+			<fe:Property name="LoopStart">RecordLoop1</fe:Property>
+			<fe:Property name="PackRecords">Last</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="152" name="RDBGet1" type="RDB(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="SQL">SELECT col01 
+  FROM public.test_data A</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">true</fe:Property>
+			<fe:Property name="GetByLoop">5000</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="postgres" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
+					<fe:Table bounds="195,73,100,215" name="test_data" schema="public" tid="1">
+						<fe:Column name="col01" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col02" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col03" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col04" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col05" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col06" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col07" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col08" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col09" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col10" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col11" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col12" type="VARCHAR" typeName="varchar"/>
+					</fe:Table>
+					<fe:Select>
+						<fe:Column column="col01" schema="public" table="test_data" tid="1"/>
+					</fe:Select>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="220" name="Mapper2" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Function fb:x="50" fb:y="84" name="Const1" type="CONST">
+						<fb:Description height="20" visible="true" width="28" x="50" y="120">
+							<fb:Property name="Font">Meiryo UI--12</fb:Property>
+							<fb:Property name="Background">40ff99cc</fb:Property>
+							<fb:Property name="Text">true</fb:Property>
+						</fb:Description>
+						<mp:Property name="Data">true</mp:Property>
+						<mp:Property name="DataType">String</mp:Property>
+						<mp:Property name="EnableMetaCharacter">false</mp:Property>
+					</mp:Function>
+					<mp:Link name="Link2">
+						<mp:Input name="Const1"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/field2"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:RDBGet1/SD:F/col01"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/field1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="CSV">
+					<fe:Property name="StartRow">1</fe:Property>
+					<fe:Property name="Separator">,</fe:Property>
+					<fe:Property name="QuotedBy">"</fe:Property>
+					<fe:Property name="QuoteTarget">all</fe:Property>
+					<fe:Property name="NullQuoting">quote</fe:Property>
+					<fe:Property name="EscapeMode">bs</fe:Property>
+					<fe:Property name="ReadTrim">true</fe:Property>
+					<fe:Property name="Encoding">utf-8</fe:Property>
+					<fe:Property name="LineFeed">(No conversion)</fe:Property>
+					<fe:Property name="OutputFieldName">False</fe:Property>
+					<fe:Property name="MemoryReductionMode">False</fe:Property>
+					<fe:FieldDef>
+						<fe:Field name="field1" type="String"/>
+						<fe:Field name="field2" type="String"/>
+						<fe:Field name="field3" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="288" name="FilePut1" type="FileSystem(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="AlreadyExistException"/>
+			<fe:Property name="FilePath">exist_list.csv</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">Relative</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="AppendMode">Append</fe:Property>
+			<fe:Property name="AllowOverwrite">true</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="356" name="LoopEnd2" type="LoopEnd">
+			<fe:Property name="LoopStart">RDBGet1</fe:Property>
+			<fe:Property name="PackRecords">Last</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="186" name="RecordLoop1" type="RecordLoop">
+			<fe:Property name="Exception"/>
+		</fe:Component>
+		<fe:Component fb:x="220" fb:y="118" name="RDBGet2" type="RDB(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">asteria_internal</fe:Property>
+			<fe:Property name="SQL">SELECT COLA,
+       COLB,
+       COLC,
+       COLD,
+       COLE,
+       COLF,
+       COLG,
+       COLH,
+       COLI,
+       COLJ,
+       COLK,
+       COLL 
+  FROM KENSYOU_TABLE_OUT A</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="sa" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
+					<fe:Table bounds="164,116,139,215" name="KENSYOU_TABLE_OUT" schema="" tid="0">
+						<fe:Column name="COLA" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COLB" type="BIGINT" typeName="BIGINT"/>
+						<fe:Column name="COLC" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COLD" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COLE" type="CHAR" typeName="CHARACTER"/>
+						<fe:Column name="COLF" type="TIMESTAMP" typeName="TIMESTAMP"/>
+						<fe:Column name="COLG" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COLH" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COLI" type="TIMESTAMP" typeName="TIMESTAMP"/>
+						<fe:Column name="COLJ" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COLK" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="COLL" type="DECIMAL" typeName="DECIMAL"/>
+					</fe:Table>
+					<fe:Select>
+						<fe:Column column="COLA" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLB" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLC" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLD" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLE" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLF" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLG" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLH" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLI" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLJ" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLK" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+						<fe:Column column="COLL" schema="" table="KENSYOU_TABLE_OUT" tid="0"/>
+					</fe:Select>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="COLA" type="String"/>
+						<fe:Field name="COLB" type="Integer"/>
+						<fe:Field name="COLC" type="String"/>
+						<fe:Field name="COLD" type="String"/>
+						<fe:Field name="COLE" type="String"/>
+						<fe:Field name="COLF" type="DateTime"/>
+						<fe:Field name="COLG" type="String"/>
+						<fe:Field name="COLH" type="String"/>
+						<fe:Field name="COLI" type="DateTime"/>
+						<fe:Field name="COLJ" type="String"/>
+						<fe:Field name="COLK" type="String"/>
+						<fe:Field name="COLL" type="Decimal"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Link name="Link3">
+			<fe:Input name="Mapper1"/>
+			<fe:Output name="BranchStart1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link12">
+			<fe:Input name="RDBPut1"/>
+			<fe:Output name="End2"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link13">
+			<fe:Input name="RDBPut2"/>
+			<fe:Output name="End3"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link15">
+			<fe:Input name="FileGet2"/>
+			<fe:Output name="Mapper5"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link16">
+			<fe:Input name="Mapper5"/>
+			<fe:Output name="RDBPut1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link4">
+			<fe:Input name="BranchStart1" state="branch"/>
+			<fe:Output name="FilePut3"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link9">
+			<fe:Input name="BranchStart1"/>
+			<fe:Output name="FilePut2"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link10">
+			<fe:Input name="FileGet3"/>
+			<fe:Output name="Mapper3"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link17">
+			<fe:Input name="Mapper3"/>
+			<fe:Output name="RDBPut2"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link11">
+			<fe:Input name="FilePut2"/>
+			<fe:Output name="BranchEnd1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link14">
+			<fe:Input name="FilePut3"/>
+			<fe:Output name="BranchEnd1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link18">
+			<fe:Input name="BranchEnd1"/>
+			<fe:Output name="LoopEnd1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link19">
+			<fe:Input name="LoopEnd1"/>
+			<fe:Output name="FileGet2"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link20">
+			<fe:Input name="LoopEnd1"/>
+			<fe:Output name="FileGet3"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link7">
+			<fe:Input name="Mapper2"/>
+			<fe:Output name="FilePut1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link8">
+			<fe:Input name="FilePut1"/>
+			<fe:Output name="LoopEnd2"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link5">
+			<fe:Input name="Start1"/>
+			<fe:Output name="RDBGet1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link6">
+			<fe:Input name="RDBGet1"/>
+			<fe:Output name="Mapper2"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link21">
+			<fe:Input name="RecordLoop1"/>
+			<fe:Output name="Mapper1"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link1">
+			<fe:Input name="LoopEnd2"/>
+			<fe:Output name="RDBGet2"/>
+			<fb:Line type="Hooked"/>
+		</fe:Link>
+		<fe:Link name="Link2">
+			<fe:Input name="RDBGet2"/>
+			<fe:Output name="RecordLoop1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Variables>
+			<fe:Field access="private" name="前回実行日時" type="String"/>
+		</fe:Variables>
+	</fe:Flow>
+</fe:Project>
