@@ -12,6 +12,12 @@
 		<fe:Property name="LogLevel">default</fe:Property>
 		<fe:Property name="OutputDefault">true</fe:Property>
 	</fe:Property>
+	<fe:External filepath="ExVar2.xvar" name="ExVar2">
+		<fe:Variables type="constants">
+			<fe:Field default="jdbc:postgresql://localhost:5432/testdb?reWriteBatchedInserts=true" id="e6e9e586-47cd-4d5e-9e6d-8415fa4713da" name="開発DB1_URL" readonly="true" type="String"/>
+			<fe:Field default="jdbc:postgresql://localhost:5432/postgres?reWriteBatchedInserts=true" id="6143f095-6ece-4078-bf3c-f2302628e498" name="開発DB2_URL" readonly="true" type="String"/>
+		</fe:Variables>
+	</fe:External>
 	<fe:Flow id="Flow1" name="IF0002">
 		<fe:Property name="Timeout">180</fe:Property>
 		<fe:Property name="Exception"/>
@@ -42,50 +48,6 @@
 				</fe:Stream>
 			</fe:Output>
 		</fe:Component>
-		<fe:Component fb:x="16" fb:y="220" name="RDBPut1" type="RDB(Put)">
-			<fe:Property name="Exception"/>
-			<fe:Property name="ConnectException"/>
-			<fe:Property name="Connection">asteria_internal</fe:Property>
-			<fe:Property name="Mode">Insert</fe:Property>
-			<fe:Property name="TableName">USERS</fe:Property>
-			<fe:Property name="UpdateCount"/>
-			<fe:Property name="UpsertInsertCount"/>
-			<fe:Property name="UpsertUpdateCount"/>
-			<fe:Property name="BatchCount">100</fe:Property>
-			<fe:Property name="QueryTimeout">0</fe:Property>
-			<fe:AdditionalProp name="Field(Input)">
-				<fe:Row Key="false" Name="NAME" Type="String"/>
-				<fe:Row Key="false" Name="EMAIL" Type="String"/>
-			</fe:AdditionalProp>
-			<fe:Input>
-				<fe:Stream format="Record">
-					<fe:FieldDef>
-						<fe:Field name="NAME" type="String"/>
-						<fe:Field name="EMAIL" type="String"/>
-					</fe:FieldDef>
-				</fe:Stream>
-			</fe:Input>
-		</fe:Component>
-		<fe:Component fb:x="16" fb:y="288" name="EndResponse1" type="EndResponse">
-			<fe:Property name="CommitTransaction">true</fe:Property>
-			<fe:Property name="ReturnValue"/>
-			<fe:Property name="PackRecords">true</fe:Property>
-		</fe:Component>
-		<fe:Component fb:x="16" fb:y="152" name="DynamicConnection2" type="DynamicConnection">
-			<fe:Property name="Exception"/>
-			<fe:Property name="Type">RDBConnection</fe:Property>
-			<fe:Property name="Connection">asteria_internal</fe:Property>
-			<fe:Property name="databasetype" type="choice">HSQL Database(Server)</fe:Property>
-			<fe:Property name="driver" type="string">org.hsqldb.jdbcDriver</fe:Property>
-			<fe:Property name="url" type="string">jdbc:hsqldb:hsql://localhost:29001/asteriadb</fe:Property>
-			<fe:Property name="username" type="string">sa</fe:Property>
-			<fe:Property name="password" type="password"/>
-			<fe:Property name="useSchemata" type="string"/>
-			<fe:Property name="xa" type="boolean">false</fe:Property>
-			<fe:Input>
-				<fe:SyncDef component="RDBPut1"/>
-			</fe:Input>
-		</fe:Component>
 		<fe:Component fb:x="16" fb:y="84" name="Mapper1" type="Mapper2">
 			<fe:Property name="Exception"/>
 			<fe:Property name="LoopProcess">false</fe:Property>
@@ -96,30 +58,112 @@
 				<mp:Mappings>
 					<mp:Option layer="レイヤー1" name="inputHideFields"/>
 					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="EV/ExVar2/開発DB1_URL"/>
+						<mp:Output fb:x="0" fb:y="0" table="CP/CP:DynamicConnection1/url"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
 				</mp:Mappings>
 			</fe:Property>
 			<fe:Output>
-				<fe:SyncDef component="RDBPut1"/>
+				<fe:Stream format="Record">
+					<fe:FieldDef/>
+				</fe:Stream>
 			</fe:Output>
 		</fe:Component>
-		<fe:Link name="Link2">
-			<fe:Input name="RDBPut1"/>
-			<fe:Output name="EndResponse1"/>
-			<fb:Line type="Direct"/>
-		</fe:Link>
+		<fe:Component fb:x="16" fb:y="152" name="DynamicConnection1" type="DynamicConnection">
+			<fe:Property name="Exception"/>
+			<fe:Property name="Type">RDBConnection</fe:Property>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="databasetype" type="choice">PostgreSQL</fe:Property>
+			<fe:Property name="driver" type="string">org.postgresql.Driver</fe:Property>
+			<fe:Property name="url" type="string">jdbc:postgresql://localhost:5432/testdb?reWriteBatchedInserts=true</fe:Property>
+			<fe:Property name="username" type="string">postgres</fe:Property>
+			<fe:Property name="password" type="password">5va7QfqF3HYTQ8f3NRH7PA==</fe:Property>
+			<fe:Property name="useSchemata" type="string"/>
+			<fe:Property name="xa" type="boolean">false</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="288" name="EndResponse1" type="EndResponse">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+			<fe:Property name="PackRecords">true</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="220" name="RDBGet1" type="RDB(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="SQL">SELECT col01,
+       col02 
+  FROM public.test_data A</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="postgres" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
+					<fe:Table bounds="110,121,100,215" name="test_data" schema="public" tid="0">
+						<fe:Column name="col01" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col02" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col03" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col04" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col05" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col06" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col07" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col08" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col09" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col10" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col11" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col12" type="VARCHAR" typeName="varchar"/>
+					</fe:Table>
+					<fe:Select>
+						<fe:Column column="col01" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col02" schema="public" table="test_data" tid="0"/>
+					</fe:Select>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="16" name="ExternalVariables1" type="ExternalVariables">
+			<fb:Description height="17" visible="true" width="41" x="120" y="16">
+				<fb:Property name="Text">ExVar2</fb:Property>
+			</fb:Description>
+			<fe:Property name="FilePath">ExVar2.xvar</fe:Property>
+		</fe:Component>
 		<fe:Link name="Link1">
 			<fe:Input name="Start1"/>
 			<fe:Output name="Mapper1"/>
 			<fb:Line type="Direct"/>
 		</fe:Link>
-		<fe:Link name="Link3">
+		<fe:Link name="Link2">
 			<fe:Input name="Mapper1"/>
-			<fe:Output name="DynamicConnection2"/>
+			<fe:Output name="DynamicConnection1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link3">
+			<fe:Input name="DynamicConnection1"/>
+			<fe:Output name="RDBGet1"/>
 			<fb:Line type="Direct"/>
 		</fe:Link>
 		<fe:Link name="Link4">
-			<fe:Input name="DynamicConnection2"/>
-			<fe:Output name="RDBPut1"/>
+			<fe:Input name="RDBGet1"/>
+			<fe:Output name="EndResponse1"/>
 			<fb:Line type="Direct"/>
 		</fe:Link>
 	</fe:Flow>
