@@ -59,7 +59,7 @@
 					<mp:Option layer="レイヤー1" name="inputHideFields"/>
 					<mp:Option layer="レイヤー1" name="outputHideFields"/>
 					<mp:Link name="Link1">
-						<mp:Input fb:x="0" fb:y="0" table="EV/ExVar2/開発DB1_URL"/>
+						<mp:Input fb:x="0" fb:y="0" table="EV/ExVar2/開発DB2_URL"/>
 						<mp:Output fb:x="0" fb:y="0" table="CP/CP:DynamicConnection1/url"/>
 						<fb:Line type="Direct"/>
 					</mp:Link>
