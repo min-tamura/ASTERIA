@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fe:Project fb:created="2026-09-02T17:03:48.223 JST" fb:idSeq="4" fb:version="1.0" id="0381986c-87e0-4c1f-beae-9686408291bf" name="DB_seisei2" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
+	<fb:Property name="CreatedVersion">2608.3412</fb:Property>
+	<fb:Property name="UpdateVersion">2608.3412</fb:Property>
+	<fb:Property name="Revision"/>
+	<fb:Property name="Author"/>
+	<fb:Property name="Copyright"/>
+	<fe:Property name="CacheType">true</fe:Property>
+	<fe:Property name="AllowInvoke"/>
+	<fe:Property name="LogSettings" unfold="true">
+		<fe:Property name="LogName"/>
+		<fe:Property name="LogLevel">default</fe:Property>
+		<fe:Property name="OutputDefault">true</fe:Property>
+	</fe:Property>
+	<fe:Flow id="Flow1" name="Flow1">
+		<fe:Property name="Timeout">180</fe:Property>
+		<fe:Property name="Exception"/>
+		<fe:Property name="AllowInvoke"/>
+		<fe:Property name="LogSettings" unfold="true">
+			<fe:Property name="LogName"/>
+			<fe:Property name="LogLevel">default</fe:Property>
+			<fe:Property name="OutputDefault">true</fe:Property>
+		</fe:Property>
+		<fe:Property name="CloseSession">true</fe:Property>
+		<fe:Property name="HttpExecute">false</fe:Property>
+		<fe:Component fb:x="50" fb:y="16" name="Start1" type="Start">
+			<fe:Property name="Exception"/>
+			<fe:Property name="BeginTransaction">false</fe:Property>
+			<fe:Property name="BeginCheckPoint">False</fe:Property>
+			<fe:Property name="CheckPointGroup" unfold="true">
+				<fe:Property name="Status"/>
+				<fe:Property name="RetryCount">SystemDefault</fe:Property>
+				<fe:Property name="RetryInterval">SystemDefault</fe:Property>
+				<fe:Property name="OtherServerRetry">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="RequiredRole"/>
+			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
+			<fe:Property name="UseHighCapacityStreams">true</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Any"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="84" name="SQLCall1" type="SQLCall">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">MySQL_gaibu</fe:Property>
+			<fe:Property name="Mode">SQL-Record</fe:Property>
+			<fe:Property name="SQL">SELECT COUNT(*) FROM performancetest_table;</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="Transaction">true</fe:Property>
+			<fe:Property name="TransformSQLParameter">true</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="a" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="186" name="End1" type="End">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="186" name="EndResponse1" type="EndResponse">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+			<fe:Property name="PackRecords">true</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="84" fb:y="84" name="RDBGet1" type="RDB(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="SQL">SELECT col01,
+       col02,
+       col03,
+       col04,
+       col05,
+       col06,
+       col07,
+       col08,
+       col09,
+       col10,
+       col11,
+       col12 
+  FROM public.test_data A 
+ WHERE col02 = '1'</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="postgres" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="false" useTableAlias="true"/>
+					<fe:Table bounds="133,83,100,215" name="test_data" schema="public" tid="0">
+						<fe:Column name="col01" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col02" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col03" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col04" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col05" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col06" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col07" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col08" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col09" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col10" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col11" type="VARCHAR" typeName="varchar"/>
+						<fe:Column name="col12" type="VARCHAR" typeName="varchar"/>
+					</fe:Table>
+					<fe:Select>
+						<fe:Column column="col01" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col02" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col03" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col04" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col05" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col06" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col07" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col08" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col09" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col10" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col11" schema="public" table="test_data" tid="0"/>
+						<fe:Column column="col12" schema="public" table="test_data" tid="0"/>
+					</fe:Select>
+					<fe:Condition type="compound">
+						<fe:Condition type="free">col02 = '1'</fe:Condition>
+					</fe:Condition>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
+						<fe:Field name="col03" type="String"/>
+						<fe:Field name="col04" type="String"/>
+						<fe:Field name="col05" type="String"/>
+						<fe:Field name="col06" type="String"/>
+						<fe:Field name="col07" type="String"/>
+						<fe:Field name="col08" type="String"/>
+						<fe:Field name="col09" type="String"/>
+						<fe:Field name="col10" type="String"/>
+						<fe:Field name="col11" type="String"/>
+						<fe:Field name="col12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Link name="Link1">
+			<fe:Input name="Start1"/>
+			<fe:Output name="SQLCall1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link2">
+			<fe:Input name="SQLCall1"/>
+			<fe:Output name="EndResponse1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+	</fe:Flow>
+	<fe:Flow id="Flow2" name="Flow2">
+		<fe:Property name="Timeout">0</fe:Property>
+		<fe:Property name="Exception"/>
+		<fe:Property name="AllowInvoke"/>
+		<fe:Property name="LogSettings" unfold="true">
+			<fe:Property name="LogName"/>
+			<fe:Property name="LogLevel">default</fe:Property>
+			<fe:Property name="OutputDefault">true</fe:Property>
+		</fe:Property>
+		<fe:Property name="CloseSession">true</fe:Property>
+		<fe:Property name="HttpExecute">false</fe:Property>
+		<fe:Component fb:x="16" fb:y="16" name="Start1" type="Start">
+			<fe:Property name="Exception"/>
+			<fe:Property name="BeginTransaction">false</fe:Property>
+			<fe:Property name="BeginCheckPoint">False</fe:Property>
+			<fe:Property name="CheckPointGroup" unfold="true">
+				<fe:Property name="Status"/>
+				<fe:Property name="RetryCount">SystemDefault</fe:Property>
+				<fe:Property name="RetryInterval">SystemDefault</fe:Property>
+				<fe:Property name="OtherServerRetry">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="RequiredRole"/>
+			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
+			<fe:Property name="UseHighCapacityStreams">true</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Any"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="84" name="FileGet1" type="FileSystem(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="FileNotFoundException"/>
+			<fe:Property name="FilePath">sample20000.csv</fe:Property>
+			<fe:Property name="FilePathDetail" unfold="true">
+				<fe:Property name="HomeDirectory">Relative</fe:Property>
+				<fe:Property name="AllowAbsolute">true</fe:Property>
+				<fe:Property name="AllowUpDir">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="FileEncoding">(AutoDetect)</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="FileDelete">false</fe:Property>
+			<fe:Output>
+				<fe:Stream format="CSV">
+					<fe:Property name="StartRow">2</fe:Property>
+					<fe:Property name="Separator">,</fe:Property>
+					<fe:Property name="QuotedBy">(none)</fe:Property>
+					<fe:Property name="QuoteTarget">all</fe:Property>
+					<fe:Property name="NullQuoting">quote</fe:Property>
+					<fe:Property name="EscapeMode">bs</fe:Property>
+					<fe:Property name="ReadTrim">true</fe:Property>
+					<fe:Property name="Encoding">utf-8</fe:Property>
+					<fe:Property name="LineFeed">CR+LF</fe:Property>
+					<fe:Property name="OutputFieldName">False</fe:Property>
+					<fe:Property name="MemoryReductionMode">False</fe:Property>
+					<fe:FieldDef>
+						<fe:Field name="COLA" type="String"/>
+						<fe:Field name="COLB" type="Integer"/>
+						<fe:Field name="COLC" type="String"/>
+						<fe:Field name="COLD" type="String"/>
+						<fe:Field name="COLE" type="String"/>
+						<fe:Field name="COLF" type="String"/>
+						<fe:Field name="COLG" type="String"/>
+						<fe:Field name="COLH" type="String"/>
+						<fe:Field name="COLI" type="String"/>
+						<fe:Field name="COLJ" type="String"/>
+						<fe:Field name="COLK" type="String"/>
+						<fe:Field name="COLL" type="Decimal"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="152" name="Mapper1" type="Mapper2">
+			<fe:Property name="Exception"/>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="PassStream">false</fe:Property>
+			<fe:Property name="CountZeroException">false</fe:Property>
+			<fe:Property name="MvMode">2</fe:Property>
+			<fe:Property name="Mappings">
+				<mp:Mappings>
+					<mp:Option layer="レイヤー1" name="inputHideFields"/>
+					<mp:Option layer="レイヤー1" name="outputHideFields"/>
+					<mp:Link name="Link1">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLA"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column1"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link2">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLB"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column2"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link3">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLC"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column3"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link4">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLD"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column4"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link5">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLE"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column5"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link6">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLF"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column6"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link7">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLG"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column7"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link8">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLH"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column8"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link9">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLI"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column9"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link10">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLJ"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column10"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link11">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLK"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column11"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+					<mp:Link name="Link12">
+						<mp:Input fb:x="0" fb:y="0" table="SD/SD:FileGet1/SD:F/COLL"/>
+						<mp:Output fb:x="0" fb:y="0" table="SD/SD:F/column12"/>
+						<fb:Line type="Direct"/>
+					</mp:Link>
+				</mp:Mappings>
+			</fe:Property>
+			<fe:Output>
+				<fe:SyncDef component="RDBPut1"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="220" name="RDBPut1" type="RDB(Put)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="Connection">MySQL_gaibu</fe:Property>
+			<fe:Property name="Mode">Update/Insert</fe:Property>
+			<fe:Property name="TableName">performancetest_table</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="UpsertInsertCount"/>
+			<fe:Property name="UpsertUpdateCount"/>
+			<fe:Property name="BatchCount">10000</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:AdditionalProp name="Field(Input)">
+				<fe:Row Key="true" Name="column1" Type="String"/>
+				<fe:Row Key="true" Name="column2" Type="String"/>
+				<fe:Row Key="false" Name="column3" Type="String"/>
+				<fe:Row Key="false" Name="column4" Type="String"/>
+				<fe:Row Key="false" Name="column5" Type="String"/>
+				<fe:Row Key="false" Name="column6" Type="String"/>
+				<fe:Row Key="false" Name="column7" Type="String"/>
+				<fe:Row Key="false" Name="column8" Type="String"/>
+				<fe:Row Key="false" Name="column9" Type="String"/>
+				<fe:Row Key="false" Name="column10" Type="String"/>
+				<fe:Row Key="false" Name="column11" Type="String"/>
+				<fe:Row Key="false" Name="column12" Type="String"/>
+			</fe:AdditionalProp>
+			<fe:Input>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="column1" type="String"/>
+						<fe:Field name="column2" type="String"/>
+						<fe:Field name="column3" type="String"/>
+						<fe:Field name="column4" type="String"/>
+						<fe:Field name="column5" type="String"/>
+						<fe:Field name="column6" type="String"/>
+						<fe:Field name="column7" type="String"/>
+						<fe:Field name="column8" type="String"/>
+						<fe:Field name="column9" type="String"/>
+						<fe:Field name="column10" type="String"/>
+						<fe:Field name="column11" type="String"/>
+						<fe:Field name="column12" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Input>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="288" name="End1" type="End">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+		</fe:Component>
+		<fe:Link name="Link1">
+			<fe:Input name="Start1"/>
+			<fe:Output name="FileGet1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link2">
+			<fe:Input name="FileGet1"/>
+			<fe:Output name="Mapper1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link3">
+			<fe:Input name="Mapper1"/>
+			<fe:Output name="RDBPut1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link4">
+			<fe:Input name="RDBPut1"/>
+			<fe:Output name="End1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+	</fe:Flow>
+	<fe:Flow id="Flow3" name="Flow3">
+		<fe:Property name="Timeout">180</fe:Property>
+		<fe:Property name="Exception"/>
+		<fe:Property name="AllowInvoke"/>
+		<fe:Property name="LogSettings" unfold="true">
+			<fe:Property name="LogName"/>
+			<fe:Property name="LogLevel">default</fe:Property>
+			<fe:Property name="OutputDefault">true</fe:Property>
+		</fe:Property>
+		<fe:Property name="CloseSession">true</fe:Property>
+		<fe:Property name="HttpExecute">false</fe:Property>
+		<fe:Component fb:x="16" fb:y="16" name="Start1" type="Start">
+			<fe:Property name="Exception"/>
+			<fe:Property name="BeginTransaction">false</fe:Property>
+			<fe:Property name="BeginCheckPoint">False</fe:Property>
+			<fe:Property name="CheckPointGroup" unfold="true">
+				<fe:Property name="Status"/>
+				<fe:Property name="RetryCount">SystemDefault</fe:Property>
+				<fe:Property name="RetryInterval">SystemDefault</fe:Property>
+				<fe:Property name="OtherServerRetry">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="RequiredRole"/>
+			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
+			<fe:Property name="UseHighCapacityStreams">true</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Any"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="84" name="SQLCall1" type="SQLCall">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="Mode">SQL</fe:Property>
+			<fe:Property name="SQL">INSERT INTO public.test_data&#xd;
+(&#xd;
+    col01,&#xd;
+    col02,&#xd;
+    col03,&#xd;
+    col04,&#xd;
+    col05,&#xd;
+    col06,&#xd;
+    col07,&#xd;
+    col08,&#xd;
+    col09,&#xd;
+    col10,&#xd;
+    col11,&#xd;
+    col12&#xd;
+)&#xd;
+SELECT&#xd;
+    col01,&#xd;
+    col02,&#xd;
+    col03,&#xd;
+    col04,&#xd;
+    col05,&#xd;
+    col06,&#xd;
+    col07,&#xd;
+    col08,&#xd;
+    col09,&#xd;
+    col10,&#xd;
+    col11,&#xd;
+    col12&#xd;
+FROM public.work_data&#xd;
+ON CONFLICT(col01,col02)&#xd;
+DO UPDATE&#xd;
+SET&#xd;
+    col03 = EXCLUDED.col03,&#xd;
+    col04 = EXCLUDED.col04,&#xd;
+    col05 = EXCLUDED.col05,&#xd;
+    col06 = EXCLUDED.col06,&#xd;
+    col07 = EXCLUDED.col07,&#xd;
+    col08 = EXCLUDED.col08,&#xd;
+    col09 = EXCLUDED.col09,&#xd;
+    col10 = EXCLUDED.col10,&#xd;
+    col11 = EXCLUDED.col11,&#xd;
+    col12 = EXCLUDED.col12;</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="UpdateCount"/>
+			<fe:Property name="Transaction">true</fe:Property>
+			<fe:Property name="TransformSQLParameter">true</fe:Property>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="152" name="EndResponse1" type="EndResponse">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+			<fe:Property name="PackRecords">true</fe:Property>
+		</fe:Component>
+		<fe:Link name="Link1">
+			<fe:Input name="Start1"/>
+			<fe:Output name="SQLCall1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link2">
+			<fe:Input name="SQLCall1"/>
+			<fe:Output name="EndResponse1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+	</fe:Flow>
+	<fe:Flow id="Flow4" name="Flow4">
+		<fe:Property name="Timeout">180</fe:Property>
+		<fe:Property name="Exception"/>
+		<fe:Property name="AllowInvoke"/>
+		<fe:Property name="LogSettings" unfold="true">
+			<fe:Property name="LogName"/>
+			<fe:Property name="LogLevel">default</fe:Property>
+			<fe:Property name="OutputDefault">true</fe:Property>
+		</fe:Property>
+		<fe:Property name="CloseSession">true</fe:Property>
+		<fe:Property name="HttpExecute">false</fe:Property>
+		<fe:Component fb:x="16" fb:y="16" name="Start1" type="Start">
+			<fe:Property name="Exception"/>
+			<fe:Property name="BeginTransaction">false</fe:Property>
+			<fe:Property name="BeginCheckPoint">False</fe:Property>
+			<fe:Property name="CheckPointGroup" unfold="true">
+				<fe:Property name="Status"/>
+				<fe:Property name="RetryCount">SystemDefault</fe:Property>
+				<fe:Property name="RetryInterval">SystemDefault</fe:Property>
+				<fe:Property name="OtherServerRetry">true</fe:Property>
+			</fe:Property>
+			<fe:Property name="RequiredRole"/>
+			<fe:Property name="ArgumentSyncFlowVariables">true</fe:Property>
+			<fe:Property name="UseHighCapacityStreams">true</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Any"/>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="84" name="RDBGet1" type="RDB(Get)">
+			<fe:Property name="Exception"/>
+			<fe:Property name="ConnectException"/>
+			<fe:Property name="RecordNotFoundException"/>
+			<fe:Property name="Connection">MySQL_gaibu</fe:Property>
+			<fe:Property name="SQL">SELECT column1 
+  FROM performancetest_table A</fe:Property>
+			<fe:Property name="RecordFilter">false</fe:Property>
+			<fe:Property name="StartRow">1</fe:Property>
+			<fe:Property name="GetCount">0</fe:Property>
+			<fe:Property name="QueryTimeout">0</fe:Property>
+			<fe:Property name="LoopProcess">false</fe:Property>
+			<fe:Property name="GetByLoop">1</fe:Property>
+			<fe:Property name="CountZeroException">true</fe:Property>
+			<fe:Property name="RDBGetDetail" unfold="true">
+				<fe:Property name="Transaction">false</fe:Property>
+				<fe:Property name="FetchSize">1000</fe:Property>
+				<fe:Property name="TransformSQLParameter">true</fe:Property>
+			</fe:Property>
+			<fe:Property designer="true" name="SQLBuilder">
+				<fe:SQLBuilder>
+					<fe:Option defaultSchema="admin" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
+					<fe:Table bounds="93,0,134,215" name="performancetest_table" schema="" tid="0">
+						<fe:Column name="column1" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column2" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column3" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column4" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column5" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column6" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column7" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column8" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column9" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column10" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column11" type="VARCHAR" typeName="VARCHAR"/>
+						<fe:Column name="column12" type="VARCHAR" typeName="VARCHAR"/>
+					</fe:Table>
+					<fe:Select>
+						<fe:Column column="column1" schema="" table="performancetest_table" tid="0"/>
+					</fe:Select>
+				</fe:SQLBuilder>
+			</fe:Property>
+			<fe:Output>
+				<fe:Stream format="Record">
+					<fe:FieldDef>
+						<fe:Field name="column1" type="String"/>
+					</fe:FieldDef>
+				</fe:Stream>
+			</fe:Output>
+		</fe:Component>
+		<fe:Component fb:x="16" fb:y="152" name="EndResponse1" type="EndResponse">
+			<fe:Property name="CommitTransaction">true</fe:Property>
+			<fe:Property name="ReturnValue"/>
+			<fe:Property name="PackRecords">true</fe:Property>
+		</fe:Component>
+		<fe:Link name="Link1">
+			<fe:Input name="Start1"/>
+			<fe:Output name="RDBGet1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+		<fe:Link name="Link2">
+			<fe:Input name="RDBGet1"/>
+			<fe:Output name="EndResponse1"/>
+			<fb:Line type="Direct"/>
+		</fe:Link>
+	</fe:Flow>
+</fe:Project>
