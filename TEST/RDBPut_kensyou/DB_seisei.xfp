@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fe:Project fb:created="2026-09-02T17:03:48.223 JST" fb:idSeq="3" fb:version="1.0" id="0381986c-87e0-4c1f-beae-9686408291bf" name="DB_seisei" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
+<fe:Project fb:created="2026-09-02T17:03:48.223 JST" fb:idSeq="3" fb:version="1.0" id="0381986c-87e0-4c1f-beae-9686408291bf" name="DBseisei" version="1.0" xmlns:fb="http://www.infoteria.com/asteria/flowbuilder" xmlns:fe="http://www.infoteria.com/asteria/flowengine" xmlns:mp="http://www.infoteria.com/asteria/mapper">
 	<fb:Property name="CreatedVersion">2608.3412</fb:Property>
 	<fb:Property name="UpdateVersion">2608.3412</fb:Property>
 	<fb:Property name="Revision"/>
@@ -44,9 +44,12 @@
 			<fe:Property name="Exception"/>
 			<fe:Property name="ConnectException"/>
 			<fe:Property name="RecordNotFoundException"/>
-			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="Connection">asteria_internal</fe:Property>
 			<fe:Property name="Mode">SQL</fe:Property>
-			<fe:Property name="SQL">DELETE FROM public.test_data;</fe:Property>
+			<fe:Property name="SQL">CREATE TABLE users (&#xd;
+    name VARCHAR(100) NOT NULL,&#xd;
+    email VARCHAR(255),&#xd;
+);</fe:Property>
 			<fe:Property name="QueryTimeout">0</fe:Property>
 			<fe:Property name="LoopProcess">false</fe:Property>
 			<fe:Property name="CountZeroException">true</fe:Property>
