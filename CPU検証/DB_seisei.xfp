@@ -513,9 +513,10 @@ SET&#xd;
 			<fe:Property name="Exception"/>
 			<fe:Property name="ConnectException"/>
 			<fe:Property name="RecordNotFoundException"/>
-			<fe:Property name="Connection">MySQL_gaibu</fe:Property>
-			<fe:Property name="SQL">SELECT column1 
-  FROM performancetest_table A</fe:Property>
+			<fe:Property name="Connection">test</fe:Property>
+			<fe:Property name="SQL">SELECT col01,
+       col02 
+  FROM public.test_data A</fe:Property>
 			<fe:Property name="RecordFilter">false</fe:Property>
 			<fe:Property name="StartRow">1</fe:Property>
 			<fe:Property name="GetCount">0</fe:Property>
@@ -530,30 +531,32 @@ SET&#xd;
 			</fe:Property>
 			<fe:Property designer="true" name="SQLBuilder">
 				<fe:SQLBuilder>
-					<fe:Option defaultSchema="admin" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
-					<fe:Table bounds="93,0,134,215" name="performancetest_table" schema="" tid="0">
-						<fe:Column name="column1" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column2" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column3" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column4" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column5" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column6" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column7" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column8" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column9" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column10" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column11" type="VARCHAR" typeName="VARCHAR"/>
-						<fe:Column name="column12" type="VARCHAR" typeName="VARCHAR"/>
+					<fe:Option defaultSchema="postgres" indentSQL="true" omitDefaultSchema="true" quoteName="false" syncSQL="true" useTableAlias="true"/>
+					<fe:Table bounds="80,63,100,215" name="test_data" schema="public" tid="1">
+						<fe:Column name="col01" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col02" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col03" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col04" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col05" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col06" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col07" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col08" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col09" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col10" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col11" type="VARCHAR" typeName="text"/>
+						<fe:Column name="col12" type="VARCHAR" typeName="text"/>
 					</fe:Table>
 					<fe:Select>
-						<fe:Column column="column1" schema="" table="performancetest_table" tid="0"/>
+						<fe:Column column="col01" schema="public" table="test_data" tid="1"/>
+						<fe:Column column="col02" schema="public" table="test_data" tid="1"/>
 					</fe:Select>
 				</fe:SQLBuilder>
 			</fe:Property>
 			<fe:Output>
 				<fe:Stream format="Record">
 					<fe:FieldDef>
-						<fe:Field name="column1" type="String"/>
+						<fe:Field name="col01" type="String"/>
+						<fe:Field name="col02" type="String"/>
 					</fe:FieldDef>
 				</fe:Stream>
 			</fe:Output>
